@@ -1,0 +1,59 @@
+# config/llm.yaml — which provider and model backs each tier.
+# Nodes ask for a tier (small | medium | strong), never a vendor.
+# Switch provider: change provider_profile here, or set LLM_PROVIDER_PROFILE.
+# Anthropic IDs are current model names. Other profiles' IDs are examples: check each
+# provider's model list before switching to them.
+
+provider_profile: anthropic          # default; anthropic | openai | gemini | azure | ollama | fake
+
+profiles:
+  anthropic:
+    small:  { model: anthropic/claude-haiku-5-5,  temperature: 0.0 }
+    medium: { model: anthropic/claude-sonnet-5-5, temperature: 0.2 }
+    strong: { model: anthropic/claude-opus-5-5,   temperature: 0.3 }
+  openai:
+    small:  { model: openai/gpt-4o-mini, temperature: 0.0 }
+    medium: { model: openai/gpt-4o,      temperature: 0.2 }
+    strong: { model: openai/gpt-4o,      temperature: 0.3 }
+  gemini:
+    small:  { model: gemini/gemini-flash, temperature: 0.0 }
+    medium: { model: gemini/gemini-pro,   temperature: 0.2 }
+    strong: { model: gemini/gemini-pro,   temperature: 0.3 }
+  azure:
+    small:  { model: azure/gpt-4o-mini, temperature: 0.0 }
+    medium: { model: azure/gpt-4o,      temperature: 0.2 }
+    strong: { model: azure/gpt-4o,      temperature: 0.3 }
+  ollama:                            # fully local, no data leaves the machine
+    small:  { model: ollama/llama3.1:8b, api_base: http://localhost:11434 }
+    medium: { model: ollama/qwen2.5:14b, api_base: http://localhost:11434 }
+    strong: { model: ollama/qwen2.5:32b, api_base: http://localhost:11434 }
+  fake:                              # deterministic offline stub for dev and tests
+    small:  { model: fake/echo }
+    medium: { model: fake/echo }
+    strong: { model: fake/echo }
+
+fallbacks:
+  strong: [medium]
+  medium: [small]
+
+embedding_profile: local             # default; local | openai | hashing (independent of provider_profile)
+embedding_profiles:
+  local:
+    model: nomic-embed-text
+    api_base: http://localhost:11434
+    dimensions: 768
+    doc_prefix: "search_document: "
+    query_prefix: "search_query: "
+    collection_suffix: v1_nomic768   # e.g. job_descriptions_v1_nomic768
+  openai:
+    model: text-embedding-3-small
+    dimensions: 1536
+    collection_suffix: v1_oai1536
+  hashing:                           # offline, deterministic; dev and tests only
+    model: hashing
+    dimensions: 256
+    collection_suffix: v1_hash256
+
+budget:
+  per_run_usd: 0.50
+  per_user_daily_usd: 2.00

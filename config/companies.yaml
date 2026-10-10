@@ -1,0 +1,58 @@
+# config/companies.yaml
+# Company ATS boards polled by jobboard-mcp (Greenhouse + Lever), India-filtered.
+# Slugs checked live on 2026-10-10.
+#   india_seen: true  -> India postings confirmed during the check
+#   india_seen: false -> slug valid, India postings not yet confirmed; validate_companies will confirm
+# Postings outside location_filter are dropped before indexing, so enabling a company is harmless.
+
+adapters:
+  greenhouse:
+    enabled: true
+    endpoint: https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true
+  lever:
+    enabled: true
+    endpoint: https://api.lever.co/v0/postings/{slug}?mode=json
+
+refresh_cron: "0 6 * * *"            # daily, 06:00 IST
+location_filter:
+  - India
+  - Bengaluru
+  - Bangalore
+  - Hyderabad
+  - Pune
+  - Chennai
+  - Mumbai
+  - Gurugram
+  - Gurgaon
+  - Noida
+  - Delhi
+  - Remote - India
+  - India - Remote
+
+companies:
+  # ---------- Greenhouse ----------
+  - { name: Databricks,  ats: greenhouse, slug: databricks,  segment: gcc,     india_seen: true,  enabled: true }  # Bengaluru, Mumbai
+  - { name: Rubrik,      ats: greenhouse, slug: rubrik,      segment: gcc,     india_seen: true,  enabled: true }  # Bangalore, Pune
+  - { name: Stripe,      ats: greenhouse, slug: stripe,      segment: gcc,     india_seen: true,  enabled: true }  # Bengaluru
+  - { name: Okta,        ats: greenhouse, slug: okta,        segment: gcc,     india_seen: true,  enabled: true }  # Bengaluru
+  - { name: MongoDB,     ats: greenhouse, slug: mongodb,     segment: gcc,     india_seen: true,  enabled: true }  # Bengaluru, Gurugram
+  - { name: Samsara,     ats: greenhouse, slug: samsara,     segment: gcc,     india_seen: true,  enabled: true }  # Bengaluru
+  - { name: Figma,       ats: greenhouse, slug: figma,       segment: product, india_seen: true,  enabled: true }  # Bengaluru
+  - { name: Toast,       ats: greenhouse, slug: toast,       segment: gcc,     india_seen: true,  enabled: true }  # Bengaluru
+  - { name: Fivetran,    ats: greenhouse, slug: fivetran,    segment: product, india_seen: true,  enabled: true }  # Bangalore
+  - { name: Gruve,       ats: greenhouse, slug: gruve,       segment: startup, india_seen: true,  enabled: true }  # Pune, Bengaluru, Mumbai
+  - { name: Cloudflare,  ats: greenhouse, slug: cloudflare,  segment: gcc,     india_seen: false, enabled: true }
+  - { name: Twilio,      ats: greenhouse, slug: twilio,      segment: gcc,     india_seen: false, enabled: true }
+  - { name: Elastic,     ats: greenhouse, slug: elastic,     segment: product, india_seen: false, enabled: true }
+  - { name: GitLab,      ats: greenhouse, slug: gitlab,      segment: product, india_seen: false, enabled: true }
+  - { name: Coinbase,    ats: greenhouse, slug: coinbase,    segment: product, india_seen: false, enabled: true }
+  - { name: HackerRank,  ats: greenhouse, slug: hackerrank,  segment: product, india_seen: false, enabled: true }
+
+  # ---------- Lever ----------
+  - { name: CRED,        ats: lever,      slug: cred,        segment: startup, india_seen: true,  enabled: true }  # Bengaluru, Hyderabad
+  - { name: Meesho,      ats: lever,      slug: meesho,      segment: product, india_seen: true,  enabled: true }  # Bangalore
+  - { name: Paytm,       ats: lever,      slug: paytm,       segment: product, india_seen: true,  enabled: true }  # Noida, Mumbai, others
+  - { name: Zeta,        ats: lever,      slug: zeta,        segment: product, india_seen: true,  enabled: true }  # Bangalore
+
+# Checked and NOT on these ATS boards (use Adzuna India or pasted links instead):
+#   PhonePe, Postman (Greenhouse slug returned 404)

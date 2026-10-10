@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Secrets — never commit real credentials. Only .env.example is tracked.
+.env
+.env.*
+!.env.example
+!.env.local.example
+secrets/
+
+# Runtime data
+data/
+outputs/
+*.sqlite3
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/out/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

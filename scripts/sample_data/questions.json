@@ -1,0 +1,8 @@
+[
+  {"question": "Design a payment idempotency layer for UPI callbacks.", "round_type": "system_design", "skill": "system design", "difficulty": 4},
+  {"question": "How does PostgreSQL MVCC work and when does it bite you?", "round_type": "technical", "skill": "postgresql", "difficulty": 3},
+  {"question": "Explain Redis eviction policies and how you chose one.", "round_type": "technical", "skill": "redis", "difficulty": 3},
+  {"question": "How do Kubernetes liveness and readiness probes differ?", "round_type": "technical", "skill": "kubernetes", "difficulty": 2},
+  {"question": "Write a function to merge overlapping intervals.", "round_type": "online_assessment", "skill": "algorithms", "difficulty": 2},
+  {"question": "Tell me about a time you disagreed with your manager.", "round_type": "managerial", "skill": null, "difficulty": 2}
+]

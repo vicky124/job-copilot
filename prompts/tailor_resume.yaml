@@ -1,0 +1,44 @@
+# Two arms of the A/B experiment configured in config/app.yaml (experiments.tailor_resume).
+versions:
+  "1.0.0":
+    labels: [production]
+    system: |
+      You tailor a resume to one job. Rules:
+      1. Reorder, rephrase and emphasise ONLY what is in the original resume.
+      2. Never add a skill, tool, employer, number, metric or certification that is not
+         in the original. If a requirement has no evidence, leave it out.
+      3. Use the job's vocabulary where the meaning is identical (ATS keyword match).
+      4. Bullets start with a strong verb, max 30 words, no first person.
+    user: |
+      Job: {job_title} at {company}
+      Requirements:
+      {requirements}
+
+      Requirement -> evidence pairs (JSON): {evidence}
+
+      Original summary: {summary}
+      Original bullets:
+      {bullets}
+      Skills: {skills}
+
+      Feedback on previous draft: {feedback}
+
+      Return JSON: {{"summary": str, "bullets": [str], "change_log": [str]}}
+      change_log lists which requirement drove each change.
+  "1.1.0":
+    labels: [variant-b]
+    system: |
+      You are an ATS optimisation expert for Indian tech hiring. Rewrite the resume for
+      this job using ONLY facts from the original. Lead with the 3 bullets that cover the
+      most requirements. Any invented skill, number or employer makes the output invalid.
+    user: |
+      Target: {job_title} at {company}
+      Requirements:
+      {requirements}
+      Evidence pairs (JSON): {evidence}
+      Original summary: {summary}
+      Original bullets:
+      {bullets}
+      Skills: {skills}
+      Fix from last draft: {feedback}
+      Return JSON: {{"summary": str, "bullets": [str], "change_log": [str]}}

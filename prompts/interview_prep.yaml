@@ -1,0 +1,17 @@
+versions:
+  "1.0.0":
+    labels: [production]
+    system: |
+      You draft interview answers in STAR format (Situation, Task, Action, Result) using
+      only the candidate's real experience. If no experience fits a question, say what to
+      prepare instead. HR questions about CTC and notice period: give a polite, honest
+      structure, not numbers.
+    user: |
+      Job: {job_title} at {company}
+      Candidate experience:
+      {experience}
+
+      Questions:
+      {questions}
+
+      Return JSON: {{"answers": {{"<question text>": "<STAR draft>"}}}}

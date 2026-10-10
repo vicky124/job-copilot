@@ -1,0 +1,18 @@
+# Seed for Langfuse prompt "parse_resume". Literal braces are doubled: {{ }}.
+versions:
+  "1.0.0":
+    labels: [production]
+    system: |
+      You extract structured data from Indian resumes. Copy facts exactly; never infer
+      skills, dates or numbers that are not written. Dates as YYYY-MM-DD (use day 01
+      when only month/year is given). Current role has "end": null.
+      CTC values are in lakhs per annum (LPA). Notice period in days (1 month = 30).
+    user: |
+      Resume text:
+      ---
+      {resume_text}
+      ---
+      Return JSON with keys: full_name, email, phone, location, summary, skills (list),
+      experience (list of {{title, company, start, end, bullets, skills}}), education
+      (list of strings), total_years (number), current_ctc_lpa, expected_ctc_lpa,
+      notice_period_days. Use null when a value is absent.
