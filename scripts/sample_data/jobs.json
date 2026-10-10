@@ -1,0 +1,29 @@
+[
+  {
+    "source": "fixture",
+    "external_id": "acme-101",
+    "title": "Backend Engineer (Python)",
+    "company": "Acme Fintech",
+    "location": "Bangalore (Hybrid)",
+    "url": "https://example.com/jobs/acme-101",
+    "description": "About us\nAcme builds UPI payment infrastructure.\nRequirements:\n- 3-5 yrs building backend services in Python\n- Strong FastAPI or Django experience\n- PostgreSQL and Redis in production\n- Docker and Kubernetes\nNice to have:\n- Kafka\nResponsibilities\nOwn payment APIs end to end. Notice period max 30 days. CTC 18-28 LPA."
+  },
+  {
+    "source": "fixture",
+    "external_id": "zen-202",
+    "title": "Senior Backend Engineer",
+    "company": "ZenCommerce",
+    "location": "Pune",
+    "url": "https://example.com/jobs/zen-202",
+    "description": "Requirements\n- 6-9 years with Java and Spring\n- Microservices and Kafka\n- AWS\nImmediate joiners preferred."
+  },
+  {
+    "source": "fixture",
+    "external_id": "data-303",
+    "title": "Data Analyst",
+    "company": "Insightly",
+    "location": "Hyderabad",
+    "url": "https://example.com/jobs/data-303",
+    "description": "Requirements\n- SQL, Excel, Power BI\n- 1-3 years experience"
+  }
+]

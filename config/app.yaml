@@ -1,0 +1,29 @@
+# config/app.yaml — pipeline tuning. Secrets never go here; they come from .env.
+
+pipeline:
+  fit_threshold: 60                # jobs scoring below this are not tailored
+  max_jobs_to_tailor: 5            # cost cap per run
+  max_query_widen_loops: 2         # no-match loop: score_fit -> build_query
+  max_tailor_retries: 2            # verify_claims failure loop
+  require_human_approval: true     # never generate documents without approval
+
+retrieval:
+  top_k: 30                        # candidates before rerank
+  keep_after_rerank: 8
+  min_score: 0.25                  # below this a retrieval is logged as a miss
+  chunk_tokens: 400
+  chunk_overlap: 50
+
+collections:
+  job_descriptions: job_descriptions
+  interview_questions: interview_questions
+  candidate_profile: candidate_profile
+
+experiments:
+  # A/B prompt experiments. Users are bucketed by a stable hash of user_id.
+  tailor_resume:
+    variants: { production: 0.8, variant-b: 0.2 }
+
+india:
+  default_country: in
+  notice_period_options_days: [0, 15, 30, 60, 90]
